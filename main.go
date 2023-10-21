@@ -1,7 +1,14 @@
-package main
+package main;
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"net/http"
+);
+
+const PORT = ":8000";
 
 func main() {
-  fmt.Println("Hello, world!");
+  fmt.Printf("Listening on http://localhost%s\n", PORT);
+  log.Fatal(http.ListenAndServe(PORT, nil));
 }
