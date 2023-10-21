@@ -1,16 +1,18 @@
-package main;
+package main
 
 import (
 	"fmt"
-	"io"
 	"log"
 	"net/http"
+	"text/template"
 );
 
 const PORT = ":8000";
 
-func index(w http.ResponseWriter, r *http.Request) {
-  io.WriteString(w, "<h1>Hello, world!</h1>")
+func index(writer http.ResponseWriter, reader *http.Request) {
+  template := template.Must(template.ParseFiles("index.html"));
+
+  template.Execute(writer, nil);
 }
 
 func main() {
