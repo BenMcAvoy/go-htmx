@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -14,34 +14,34 @@
 
 <body class="container">
   <div class="row mt-4 g-4">
-    <div class="col p-4 m-4 border rounded">
-      <h1 class="mb-4 text-decoration-underline">Film List</h1>
-
-      <ul class="list-group fs-5 me-5">
-        {{ range .Films }}
-          <li class="list-group-item bg-primary text-white">{{ .Title }} - {{ .Director }}</li>
-        {{ end }}
-      </ul>
+    <div class="col-md">
+      <div class="p-4 m-4 text-center border rounded">
+        <h1 class="mb-4 text-decoration-underline">Film List</h1>
+        <ul class="list-group fs-5">
+          {{ range .Films }}
+            <li class="list-group-item bg-primary text-white">{{ .Title }} - {{ .Director }}</li>
+          {{ end }}
+        </ul>
+      </div>
     </div>
 
-    <div class="col-4 p-4 m-4 border rounded">
-      <h1 class="mb-4 text-decoration-underline">Add Film</h1>
-
-      <form>
-        <div class="mb-2">
-          <label for="film-title">Title</label>
-          <input type="text" name="title" id="film-title" class="form-control"/>
-        </div>
-
-        <div class="mb-3">
-          <label for="film-director">Director</label>
-          <input type="text" name="director" id="film-director" class="form-control"/>
-        </div>
-
-        <div class="col text-center">
-          <button type="submit" class="btn btn-primary">Add</button>
-        </div>
-      </form>
+    <div class="col-md">
+      <div class="p-4 m-4 border rounded">
+        <h1 class="mb-4 text-center text-decoration-underline">Add Film</h1>
+        <form>
+          <div class="mb-2">
+            <label for="film-title">Title</label>
+            <input type="text" name="title" id="film-title" class="form-control"/>
+          </div>
+          <div class="mb-3">
+            <label for "film-director">Director</label>
+            <input type="text" name="director" id="film-director" class="form-control"/>
+          </div>
+          <div class="col text-center">
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </body>
