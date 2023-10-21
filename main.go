@@ -7,12 +7,25 @@ import (
 	"text/template"
 );
 
+type Film struct {
+  Title    string;
+  Director string;
+}
+
 const PORT = ":8000";
 
 func index(writer http.ResponseWriter, reader *http.Request) {
   template := template.Must(template.ParseFiles("index.html"));
 
-  template.Execute(writer, nil);
+  films := map[string][]Film {
+    "Films": {
+      {Title: "The Godfather", Director: "Fancis Ford Coppola"},
+      {Title: "Blade Runner", Director: "Ridley Scott"},
+      {Title: "The Thing", Director: "John Carpenter"},
+    },
+  }
+
+  template.Execute(writer, films);
 }
 
 func main() {
