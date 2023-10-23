@@ -30,6 +30,25 @@ func addFilm(writer http.ResponseWriter, reader *http.Request) {
     return;
   }
 
+  username := os.Getenv("DB_USERNAME");
+  password := os.Getenv("DB_PASSWORD");
+  ip := os.Getenv("DB_IP");
+  port := os.Getenv("DB_PORT");
+  database := os.Getenv("DB_NAME");
+
+  connectUrl := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, ip, port, database);
+
+  db, err := sql.Open("mysql", connectUrl);
+
+  if err != nil {
+    log.Fatalf("could not connect to database: %v", err);
+  }
+
+  _, err = db.Exec("INSERT INTO Films (Title, Director) VALUES (?, ?)", title, director)
+  if err != nil {
+    log.Fatal(err)
+  }
+
   // Simulate expensive task.
   time.Sleep(1 * time.Second);
 
@@ -42,11 +61,11 @@ func addFilm(writer http.ResponseWriter, reader *http.Request) {
 }
 
 func index(writer http.ResponseWriter, reader *http.Request) {
-  username := os.Getenv("USERNAME");
-  password := os.Getenv("PASSWORD");
-  ip := os.Getenv("IP");
-  port := os.Getenv("PORT");
-  database := os.Getenv("DATABASE");
+  username := os.Getenv("DB_USERNAME");
+  password := os.Getenv("DB_PASSWORD");
+  ip := os.Getenv("DB_IP");
+  port := os.Getenv("DB_PORT");
+  database := os.Getenv("DB_NAME");
 
   connectUrl := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, ip, port, database);
 
