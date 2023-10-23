@@ -16,8 +16,6 @@ type Film struct {
 const PORT = ":8000";
 
 func addFilm(writer http.ResponseWriter, reader *http.Request) {
-  time.Sleep(1 * time.Second);
-
 	title    := reader.PostFormValue("title");
 	director := reader.PostFormValue("director");
 
@@ -25,6 +23,9 @@ func addFilm(writer http.ResponseWriter, reader *http.Request) {
   if len(title) == 0 || len(director) == 0 {
     return;
   }
+
+  // Simulate expensive task.
+  time.Sleep(1 * time.Second);
 
   fmt.Printf("Adding film:\n  %s - %s", title, director);
 
